@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Details</title>
+    <link rel="stylesheet" th:href="@{/css/books.css}">
+</head>
+<body>
+    <h1 th:text="${book.title}">Title</h1>
+    <p><strong>Author:</strong> <span th:text="${book.author}">Author</span></p>
+    <p><strong>Year:</strong> <span th:text="${book.publicYear}">Year</span></p>
+    <p><strong>Category:</strong> <span th:text="${book.category}">Category</span></p>
+    <button onclick="window.location.href='/books'">Back to Books</button>
+</body>
+</html>
