@@ -13,7 +13,7 @@
             (Reserved on: <span th:text="${reservation.reservationDate}">Reservation Date</span>)
             <form th:action="@{/cancel-reservation}" method="post" style="display:inline;">
                 <input type="hidden" name="reservationId" th:value="${reservation.id}">
-                <input type="hidden" name="username" value="sampleUser">
+                <input type="hidden" name="username" th:value="${username}">
                 <button type="submit">Cancel</button>
             </form>
         </p>
@@ -21,7 +21,3 @@
     <button onclick="window.location.href='/books'">Back to Books</button>
 </body>
 </html>
-
-
-
-
