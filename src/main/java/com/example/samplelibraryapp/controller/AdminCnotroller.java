@@ -84,13 +84,14 @@ public class AdminCnotroller {
     } 
     
     @PostMapping("/admin/delete-books")
-    public String deleteBook(@RequestParam Long bookId, HttpSession session) {
+    public String deleteBook(@RequestParam Long bookId, HttpSession session, Model model) {
     	 String username = (String) session.getAttribute("username");
          if (username == null || !isAdmin(username)) {
              return "redirect:/login";
          } 
          bookService.deleteById(bookId);
-         return "redirect:/admin";
+         model.addAttribute("books", bookService.findAll());
+         return "delete-books";
     }
     
     private boolean isAdmin(String username) {

@@ -6,27 +6,28 @@
     <link rel="stylesheet" th:href="@{/css/books.css}">
 </head>
 <body>
-    <h1>Library Books</h1>
-    <p>Welcome, <span th:text="${username}">User</span></p>
+    <h1>図書館管理アプリ</h1>
+    <p>こんにちは, <span th:text="${username}">User</span></p>
     <form th:action="@{/books}" method="get">
         <input type="text" name="keyword" placeholder="Search by title or author">
-        <button type="submit">Search</button>
+        <button type="submit">検索</button>
     </form>
-    <div class="grid-container">
-        <div th:each="book : ${books}" class="grid-item">
-            <h2 th:text="${book.title}">Title</h2>
-            <p><strong>Author:</strong> <span th:text="${book.author}">Author</span></p>
-            <p><strong>Year:</strong> <span th:text="${book.publicYear}">Year</span></p>
-            <p><strong>Category:</strong> <span th:text="${book.category}">Category</span></p>
-            <form th:action="@{/reservations}" method="post">
+    <div class="book-container">
+        <div th:each="book : ${books}" class="book-row">
+            <div class="book-info">
+                <h2 th:text="${book.title}">タイトル</h2>
+                <p><strong>著者:</strong> <span th:text="${book.author}">Author</span></p>
+                <p><strong>出版年:</strong> <span th:text="${book.publicYear}">Year</span></p>
+                <p><strong>カテゴリー:</strong> <span th:text="${book.category}">Category</span></p>
+            </div>
+            <form th:action="@{/reservations}" method="post" class="reserve-form">
                 <input type="hidden" name="bookId" th:value="${book.id}">
-                <button type="submit">Reserve</button>
+                <button type="submit" class="reserve-button">予約</button>
             </form>
         </div>
     </div>
     <a href="/logout">Logout</a>
 </body>
 </html>
-
 
 

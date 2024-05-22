@@ -8,26 +8,48 @@ h1 {
     color: #333;
 }
 
-.button-container {
-    margin-top: 20px;
+.book-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.book-block {
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.book-block h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.book-block p {
+    margin: 5px 0;
+}
+
+.delete-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.delete-button:hover {
+    background-color: darkred;
 }
 
 button {
-    margin-right: 10px;
+    margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
+    cursor: pointer;
 }
 
-form {
-    margin-top: 20px;
-}
-
-label {
-    display: block;
-    margin-top: 10px;
-}
-
-input, select {
-    padding: 5px;
-    margin-top: 5px;
+button:focus, .delete-button:focus {
+    outline: none;
 }

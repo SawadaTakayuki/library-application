@@ -2,61 +2,73 @@
 
 body {
     font-family: Arial, sans-serif;
-    margin: 20px;
 }
 
 h1 {
     color: #333;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.button-container {
+.book-container {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
-.button-container button {
-    margin: 0 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-}
-
-.button-container button:hover {
-    background-color: #0056b3;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    flex-direction: column;
     gap: 20px;
+    padding: 0 20px;
 }
 
-.grid-item {
+.book-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     border: 1px solid #ddd;
     padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
 }
 
-.grid-item h2 {
-    margin-top: 0;
+.book-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.grid-item button {
-    margin-top: 10px;
-    padding: 5px 10px;
-    border: none;
-    border-radius: 3px;
-    background-color: #007bff;
+.book-info h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.book-info p {
+    margin: 0;
+}
+
+.reserve-form {
+    margin-left: 20px;
+}
+
+.reserve-button {
+    background-color: blue;
     color: white;
+    border: none;
+    padding: 10px;
     cursor: pointer;
+    font-size: 14px;
 }
 
-.grid-item button:hover {
-    background-color: #0056b3;
+.reserve-button:hover {
+    background-color: darkblue;
 }
+
+a {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+

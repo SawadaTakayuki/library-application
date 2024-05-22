@@ -7,14 +7,31 @@
 </head>
 <body>
     <h1>本の削除</h1>
-    <form th:action="@{/admin/delete-books}" method="post">
-        <label for="book">Select Book:</label>
-        <select id="book" name="bookId" required>
-            <option th:each="book : ${books}" th:value="${book.id}" th:text="${book}">book</option>
-        </select>
-        <br>
-        <button type="submit">削除</button>
-    </form>
-    <button onclick="window.location.href='/admin'">管理者ホームに戻る</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Year</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book : ${books}">
+                <td th:text="${book.title}">Title</td>
+                <td th:text="${book.author}">Author</td>
+                <td th:text="${book.publicYear}">Year</td>
+                <td th:text="${book.category}">Category</td>
+                <td>
+                    <form th:action="@{/admin/delete-books}" method="post" style="display:inline;">
+                        <input type="hidden" name="bookId" th:value="${book.id}">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button onclick="window.location.href='/admin'">Back to Admin Home</button>
 </body>
-</html>
+</html>	

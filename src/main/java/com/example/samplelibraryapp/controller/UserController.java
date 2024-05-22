@@ -28,7 +28,7 @@ public class UserController {
         User user = userService.findByUsername(username);
         if (user != null && user.getPassword().equals(password)) {
             session.setAttribute("username", username);
-            return "redirect:/books";
+            return "redirect:/";
         } else {
             model.addAttribute("error", "Invalid username or password");
             return "login";
@@ -50,6 +50,16 @@ public class UserController {
         userService.save(newUser);
         model.addAttribute("success", "Registration successful. Please login.");
         return "login";
+    }
+    
+    @GetMapping("/")
+    public String userHome(HttpSession session, Model model) {
+        String username = (String) session.getAttribute("username");
+        if (username == null) {
+            return "redirect:/login";
+        }
+        model.addAttribute("username", username);
+        return "index";
     }
 
     @GetMapping("/logout")
