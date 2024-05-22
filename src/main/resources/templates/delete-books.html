@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Books</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+    <h1>本の削除</h1>
+    <form th:action="@{/admin/delete-books}" method="post">
+        <label for="book">Select Book:</label>
+        <select id="book" name="bookId" required>
+            <option th:each="book : ${books}" th:value="${book.id}" th:text="${book}">book</option>
+        </select>
+        <br>
+        <button type="submit">削除</button>
+    </form>
+    <button onclick="window.location.href='/admin'">管理者ホームに戻る</button>
+</body>
+</html>

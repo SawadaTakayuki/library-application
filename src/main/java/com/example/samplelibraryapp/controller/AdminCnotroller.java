@@ -26,7 +26,7 @@ public class AdminCnotroller {
 		public String adimnHome (HttpSession session) {
 			String username = (String) session.getAttribute("username");
 			if (username == null || !isAdmin(username)) {
-				return "redirect://login";
+				return "redirect:/login";
 			}
 			return "admin";	
 	}
@@ -35,7 +35,7 @@ public class AdminCnotroller {
 	public String AddBooks (HttpSession session) {
 		String username = (String) session.getAttribute("username");
 		if(username == null || !isAdmin(username)) {
-			return "redirect://login";
+			return "redirect:/login";
 		}
 		return  "add-books";
 	}
@@ -46,11 +46,11 @@ public class AdminCnotroller {
             							HttpSession session) {
 		String username = (String) session.getAttribute("username");
 		if(username == null || !isAdmin(username)) {
-			return "redirect://login";
+			return "redirect:/login";
 		}
 		Book book = new Book(title, author, publicYear, category);
 		bookService.save(book);
-		return "redirect://admin";
+		return "redirect:/admin";
 	}
 	
 	@GetMapping("/admin/delete-user")
@@ -68,13 +68,32 @@ public class AdminCnotroller {
         String username = (String) session.getAttribute("username");
         if (username == null || !isAdmin(username)) {
             return "redirect:/login";
-        }
+        } 
         userService.deleteById(userId);
         return "redirect:/admin";
     }
     
+    @GetMapping("/admin/delete-books")
+    public String deleteBooForm(HttpSession session, Model model) {
+    	String username = (String) session.getAttribute("username");
+    	if (username == null || !isAdmin(username)) {
+    		return "redirect:/login";
+    	}
+    	model.addAttribute("books", bookService.findAll());
+    	return "delete-books";
+    } 
+    
+    @PostMapping("/admin/delete-books")
+    public String deleteBook(@RequestParam Long bookId, HttpSession session) {
+    	 String username = (String) session.getAttribute("username");
+         if (username == null || !isAdmin(username)) {
+             return "redirect:/login";
+         } 
+         bookService.deleteById(bookId);
+         return "redirect:/admin";
+    }
+    
     private boolean isAdmin(String username) {
-    	username = "admin";
         // 管理者ユーザーをチェックするためのロジックをここに追加
         // 例えば、特定のユーザー名を管理者とする場合:
         return "admin".equals(username);
