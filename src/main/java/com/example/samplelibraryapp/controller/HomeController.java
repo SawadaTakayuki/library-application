@@ -13,8 +13,6 @@ public class HomeController {
 	@Autowired
 	private ReservationService reservationService;
 	
-	
-	
 	@GetMapping("/")
 		public String index() {
 			return "index";

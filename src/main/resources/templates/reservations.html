@@ -3,20 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Reservations</title>
-    <link rel="stylesheet" th:href="@{/css/books.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
 </head>
 <body>
     <h1>Reservations for <span th:text="${username}">Username</span></h1>
-    <div th:each="reservation : ${reservations}">
-        <p>
-            <strong th:text="${reservation.book.title}">Book Title</strong> 
-            (Reserved on: <span th:text="${reservation.reservationDate}">Reservation Date</span>)
-            <form th:action="@{/cancel-reservation}" method="post" style="display:inline;">
-                <input type="hidden" name="reservationId" th:value="${reservation.id}">
-                <input type="hidden" name="username" th:value="${username}">
-                <button type="submit">Cancel</button>
-            </form>
-        </p>
+    <div th:if="${reservations != null}">
+        <div th:each="reservation : ${reservations}">
+            <p>
+                <strong th:text="${reservation.book.title}">Book Title</strong> 
+                (Reserved on: <span th:text="${reservation.reservationDate}">Reservation Date</span>)
+                <form th:action="@{/cancel-reservation}" method="post" style="display:inline;">
+                    <input type="hidden" name="reservationId" th:value="${reservation.id}">
+                    <button type="submit">Cancel</button>
+                </form>
+            </p>
+        </div>
     </div>
     <button onclick="window.location.href='/books'">Back to Books</button>
 </body>

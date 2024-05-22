@@ -20,7 +20,6 @@
             <p><strong>Category:</strong> <span th:text="${book.category}">Category</span></p>
             <form th:action="@{/reservations}" method="post">
                 <input type="hidden" name="bookId" th:value="${book.id}">
-                <input type="hidden" name="username" th:value="${username}">
                 <button type="submit">Reserve</button>
             </form>
         </div>
@@ -28,5 +27,6 @@
     <a href="/logout">Logout</a>
 </body>
 </html>
+
 
 
